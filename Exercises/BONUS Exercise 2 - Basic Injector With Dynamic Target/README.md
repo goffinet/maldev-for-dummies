@@ -1,19 +1,19 @@
-# Bonus Exercise 2 - Basic Injector With Dynamic Target
+# Bonus Exercice 2 - Injecteur de base avec cible dynamique
 
 ## Description
 
-Modify your injector from [Exercise 2](../Exercise%202%20-%20Basic%20Shellcode%20Injector/) such that the target process is configurable, and the program spawns the process if it does not exist already.
+Modifiez votre injecteur de [Exercice 2](../Exercice%202%20-%20Basic%20Shellcode%20Injector/) de manière à ce que le processus cible soit configurable et que le programme crée le processus s'il n'existe pas déjà.
 
-## Tips
+## Astuces
 
-This is a programming exercise more than anything else. Adding functionality like this is a great way to get better acquainted with chosen programming language! The injector program should prompt the user for a process name via the command line, and resolve that name into a process ID (look into the `CreateToolhelp32Snapshot()` API) if needed, spawning the process if it does not yet exist (for the purposes of this exercise, you may assume that the binary will exist in the user's path). Then, the injector should use this process as a target for injection as before.
+Il s'agit avant tout d'un exercice de programmation. L'ajout de fonctionnalités de ce type est un excellent moyen de se familiariser avec le langage de programmation choisi ! Le programme injecteur doit demander à l'utilisateur un nom de processus via la ligne de commande, et résoudre ce nom en un ID de processus (voir l'API `CreateToolhelp32Snapshot()`) si nécessaire, en créant le processus s'il n'existe pas encore (pour les besoins de cet exercice, vous pouvez supposer que le binaire existera dans le chemin de l'utilisateur). Ensuite, l'injecteur doit utiliser ce processus comme cible d'injection comme précédemment.
 
-## References
+## Références
 
 ### C#
 
-- [C# User Input](https://www.w3schools.com/cs/cs_user_input.php)
-- [Process.GetProcessesByName() function](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.process.getprocessesbyname)
+- [Entrée utilisateur C#](https://www.w3schools.com/cs/cs_user_input.php)
+- [Fonction Process.GetProcessesByName()](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.process.getprocessesbyname)
 
 ### Golang
 
@@ -27,8 +27,8 @@ This is a programming exercise more than anything else. Adding functionality lik
 ### Rust
 
 - [std::io::Stdin::read_line()](https://doc.rust-lang.org/stable/std/io/struct.Stdin.html#method.read_line)
-- [An example implementation of user input in srdi-rs/inject](https://github.com/trickster0/OffensiveRust/blob/master/memN0ps/srdi-rs/inject/src/main.rs#L115-L119)
+- [Exemple d'implémentation de l'entrée utilisateur dans srdi-rs/inject](https://github.com/trickster0/OffensiveRust/blob/master/memN0ps/srdi-rs/inject/src/main.rs#L115-L119)
 
 ## Solution
 
-Example solutions are provided in the [solutions folder](solutions/). Keep in mind that there is no "right" answer, if you made it work that's a valid solution! 
+Des exemples de solutions sont fournis dans le [dossier solutions](solutions/). Gardez à l'esprit qu'il n'y a pas de « bonne » réponse, si vous avez réussi à le faire fonctionner, c'est une solution valable ! 

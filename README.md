@@ -1,83 +1,85 @@
-# Malware Development for Dummies
+# Développement de logiciels malveillants pour les nuls
 
-*In the age of EDR, red team operators cannot get away with using pre-compiled payloads anymore. As such, malware development is becoming a vital skill for any operator. Getting started with maldev may seem daunting, but is actually very easy. This workshop will show you all you need to get started!*
+*À l'ère de l'EDR, les opérateurs de la red team ne peuvent plus se permettre d'utiliser des charges utiles précompilées. Le développement de logiciels malveillants devient donc une compétence essentielle pour tout opérateur. S'initier au maldev peut sembler intimidant, mais c'est en fait très facile. Cet atelier vous montrera tout ce dont vous avez besoin pour commencer !*
 
-This repository contains the slides and accompanying exercises for the 'MalDev for Dummies' workshop that has been/will be facilitated at Hack in Paris 2022 and X33fcon 2023. Although the slides were designed to be presented 'in-person', the materials and exercises will remain available here to be completed at your own pace - the learning process should never be rushed! Issues and pull requests to this repo with questions and/or suggestions are welcomed.
+Ce dépôt contient les diapositives et les exercices qui accompagnent l'atelier « MalDev for Dummies » qui a été/sera animé à Hack in Paris 2022 et à X33fcon 2023. Bien que les diapositives aient été conçues pour être présentées « en personne », le matériel et les exercices resteront disponibles ici pour être complétés à votre rythme - le processus d'apprentissage ne doit jamais être précipité ! Les questions et les demandes d'ajout à ce dépôt sont les bienvenues.
 
-> ⚠ **Disclaimer:** Malware development is a skill that can -and should- be used for good, to further the field of (offensive) security and keep our defenses sharp. If you ever use this skillset to perform activities that you have no authorization for, you are a bigger dummy than this workshop is intended for and you should skidaddle on out of here.
+> ⚠ **Avertissement :** Le développement de logiciels malveillants est une compétence qui peut - et doit - être utilisée à bon escient, pour faire progresser le domaine de la sécurité (offensive) et maintenir nos défenses en alerte. Si jamais vous utilisez ces compétences pour mener des activités pour lesquelles vous n'avez pas d'autorisation, vous êtes plus bête que ce que cet atelier est censé être et vous devriez déguerpir d'ici.
 
-## Workshop Description
+## Description de l'atelier
 
-With antivirus (AV) and Enterprise Detection and Response (EDR) tooling becoming more mature by the minute, the red team is being forced to stay ahead of the curve. Gone are the times of `execute-assembly` and dropping unmodified payloads on disk - if you want your engagements to last longer than a week you will have to step up your payload creation and malware development game. Starting out in this field can be daunting however, and finding the right resources is not always easy.
+Les outils antivirus (AV) et de détection et réponse d'entreprise (EDR) gagnant en maturité de minute en minute, l'équipe rouge est obligée de garder une longueur d'avance. L'époque de l'exécution-assemblage et du dépôt de charges utiles non modifiées sur le disque est révolue. Si vous voulez que vos engagements durent plus d'une semaine, vous devrez intensifier votre création de charges utiles et votre développement de logiciels malveillants. Il peut cependant être intimidant de se lancer dans ce domaine et il n'est pas toujours facile de trouver les bonnes ressources.
 
-This workshop is aimed at beginners in the space and will guide you through your first steps as a malware developer. It is aimed primarily at offensive practitioners, but defensive practitioners are also very welcome to attend and broaden their skillset. 
+Cet atelier s'adresse aux débutants dans le domaine et vous guidera dans vos premiers pas en tant que développeur de logiciels malveillants. Il s'adresse principalement aux praticiens offensifs, mais les praticiens défensifs sont également les bienvenus pour y assister et élargir leurs compétences. 
 
-During the workshop we will go over some theory, after which we will set you up with a lab environment. There will be various exercises that you can complete depending on your current skillset and level of comfort with the subject. However, the aim of the workshop is to learn, and explicitly *not* to complete all the exercises. You are free to choose your preferred programming language for malware development, but support during the workshop is provided primarily for the C# and Nim programming languages.
+Pendant l'atelier, nous aborderons quelques notions théoriques, après quoi un environnement de laboratoire sera activé. Vous pourrez effectuer différents exercices en fonction de vos compétences actuelles et de votre niveau de maîtrise du sujet. Cependant, l'objectif de l'atelier est d'apprendre, et explicitement *non* de terminer tous les exercices. Vous êtes libre de choisir votre langage de programmation préféré pour le développement de logiciels malveillants, mais l'assistance pendant l'atelier est principalement fournie pour les langages de programmation C# et Nim.
 
-During the workshop, we will discuss the key topics required to get started with building your own malware. This includes (but is not limited to):
-- The Windows API
-- Filetypes and execution methods
-- Shellcode execution and injection
-- AV and EDR evasion methods
+Au cours de l'atelier, nous aborderons les principaux sujets nécessaires pour commencer à créer votre propre malware. Cela inclut (mais n'est pas limité à) :
+- L'API Windows
+- Les types de fichiers et les méthodes d'exécution
+- L'exécution et l'injection de shellcode
+- Les méthodes d'évasion AV et EDR
 
-## Getting Started
+## Pour commencer
 
-To get started with malware development, you will need a dev machine so that you are not bothered by any defensive tooling that may run on your host machine. I prefer Windows for development, but Linux or MacOS will do just as fine. Install your editor/IDE of choice (I use [VS Code](https://code.visualstudio.com/) for almost everything except C#, for which I use [Visual Studio](https://visualstudio.microsoft.com/vs/community/), and then install the toolchains required for your MalDev language of choice:
+Pour commencer à développer des logiciels malveillants, vous aurez besoin d'une machine de développement afin de ne pas être gêné par les outils de défense qui pourraient s'exécuter sur votre machine hôte. Je préfère Windows pour le développement, mais Linux ou MacOS feront tout aussi bien l'affaire. Installez l'éditeur/IDE de votre choix (j'utilise [VS Code](https://code.visualstudio.com/) pour presque tout sauf C#, pour lequel j'utilise [Visual Studio](https://visualstudio.microsoft.com/vs/community/), puis installez les chaînes d'outils requises pour le langage MalDev de votre choix :
 
-- **C#**: Visual Studio will give you the option to include the .NET packages you will need to develop C#. If you want to develop without Visual Studio, you can download the [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework) separately.
-- **Nim lang**: Follow the [download instructions](https://nim-lang.org/install.html). [Choosenim](https://github.com/dom96/choosenim) is a convenient utility that can be used to automate the installation process.
-- **Golang** (thanks to @nodauf for the PR): Follow the [download instructions](https://go.dev/doc/install).
-- **Rust**: [Rustup](https://www.rust-lang.org/tools/install) can be used to install Rust along with the required toolchains. 
+- **C#** : Visual Studio vous donnera la possibilité d'inclure les packages .NET dont vous aurez besoin pour développer en C#. Si vous souhaitez développer sans Visual Studio, vous pouvez télécharger le [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework) séparément.
+- **Nim lang** : Suivez les [instructions de téléchargement](https://nim-lang.org/install.html). [Choosenim](https://github.com/dom96/choosenim) est un utilitaire pratique qui peut être utilisé pour automatiser le processus d'installation.
+- **Golang** (merci à @nodauf pour la PR) : Suivez les [instructions de téléchargement](https://go.dev/doc/install).
+- **Rust** : [Rustup](https://www.rust-lang.org/tools/install) peut être utilisé pour installer Rust ainsi que les chaînes d'outils requises. 
 
-Don't forget to disable Windows Defender or add the appropriate exclusions, so your hard work doesn't get quarantined! Later on, we can test on a separate machine with defensive controls like AV enabled.
+N'oubliez pas de désactiver Windows Defender ou d'ajouter les exclusions appropriées, afin que votre travail ne soit pas mis en quarantaine ! Plus tard, nous pourrons tester sur une autre machine avec des contrôles défensifs tels que l'antivirus activé.
 
-> ℹ **Note:** Oftentimes, package managers such as apt or software management tools such as Chocolatey or Winget (now built-in!) can be used to automate the installation and management of dependencies in a convenient and repeatable way. Be conscious however that versions in package managers may be a couple versions behind on the real thing! Below is an example command to install the mentioned tooling all at once.
+> ℹ **Remarque :** Souvent, les gestionnaires de paquets tels qu'apt ou les outils de gestion de logiciels tels que Chocolatey ou Winget (désormais intégrés !) peuvent être utilisés pour automatiser l'installation et la gestion des dépendances de manière pratique et reproductible. Sachez toutefois que les versions des gestionnaires de paquets peuvent être en retard de quelques versions par rapport à la réalité ! Vous trouverez ci-dessous un exemple de commande pour installer tous les outils mentionnés en une seule fois.
 >
 > ```
 >  choco install -y nim choosenim go rust vscode visualstudio2019community dotnetfx
 > ```
 
-## Compiling programs
+## Compilation des programmes
 
-The languages that we will discuss during this workshop are *compiled* languages, meaning that a compiler is used to translate your source code into binary executables of your chosen format. The process of compilation differs per language. 
+Les langages dont nous parlerons au cours de cet atelier sont des langages *compilés*, ce qui signifie qu'un compilateur est utilisé pour traduire votre code source en exécutables binaires du format de votre choix. Le processus de compilation diffère selon le langage. 
 
 ### C#
 
-C# code (`.cs` files) can either be compiled directly (with the `csc` utility) or via Visual Studio itself. Most source code in this repo (except the solution to [bonus exercise 3](./Exercises/BONUS%20Exercise%203%20-%20Basic%20EDR%20Evasion/solutions/csharp/)) can be compiled as follows.
+Le code C# (fichiers .cs) peut être compilé directement (avec l'utilitaire csc) ou via Visual Studio lui-même. La plupart des codes sources de ce dépôt (à l'exception de la solution de l'exercice bonus 3) peuvent être compilés comme suit.
 
-> ℹ **Note:** Make sure you run the below command in a "Visual Studio Developer Command Prompt" so it knows where to find `csc`, it is recommended to use the "x64 Native Tools Command Prompt" for your version of Visual Studio. The `/unsafe` flag will be required for most scripts where we access low-level functionality directly.
+> ℹ **Remarque :** Assurez-vous d'exécuter la commande ci-dessous dans une « Invite de commande du développeur Visual Studio » afin qu'elle sache où trouver `csc`, il est recommandé d'utiliser l'« Invite de commande des outils natifs x64 » pour votre version de Visual Studio. L'indicateur `/unsafe` sera nécessaire pour la plupart des scripts où nous accédons directement à des fonctionnalités de bas niveau.
 
 ```
-csc filename.exe
+csc nomfichier.exe
 ```
 
-You can enable compile-time optimizations with the `/optimize` flag. You can hide the console window by adding `/target:winexe` as well, or compile as DLL with `/target:library` (but make sure your code structure is suitable for this).
+Vous pouvez activer les optimisations de compilation avec l'indicateur `/optimize`. Vous pouvez également masquer la fenêtre de la console en ajoutant `/target:winexe`, ou compiler en tant que DLL avec `/target:library` (mais assurez-vous que la structure de votre code est adaptée à cette opération).
 
 ### Nim
 
-Nim code (`.nim` files) is compiled with the `nim c` command. The source code in this repo can be compiled as follows.
+Le code Nim (fichiers `.nim`) est compilé avec la commande `nim c`. Le code source de ce dépôt peut être compilé comme suit.
+
+Si vous souhaitez optimiser votre build en termes de taille et supprimer les informations de débogage (bien mieux pour l'opsec !), vous pouvez ajouter les indicateurs suivants.
 
 ```
 nim c filename.nim
 ```
 
-If you want to optimize your build for size and strip debug information (much better for opsec!), you can add the following flags.
+Si vous souhaitez optimiser votre build en termes de taille et supprimer les informations de débogage (bien mieux pour l'opsec !), vous pouvez ajouter les options suivantes.
 
 ```
 nim c -d:release -d:strip --opt:size filename.nim
 ```
 
-Optionally you can hide the console window by adding `--app:gui` as well.
+Vous pouvez également masquer la fenêtre de la console en ajoutant également`--app:gui`.
 
 ### Golang
 
-Golang code (`.go` files) is compiled with the `go build` command. The source code in this repo can be compiled as follows.
+Le code Golang (fichiers .go) est compilé avec la commande go build. Le code source de ce dépôt peut être compilé comme suit.
 
 ```
 GOOS=windows go build
 ```
 
-If you want to optimize your build for size and strip debug information (much better for opsec!), you can add the following flags.
+Si vous souhaitez optimiser votre build en termes de taille et supprimer les informations de débogage (bien mieux pour l'opsec !), vous pouvez ajouter les indicateurs suivants.
 
 ```
 GOOS=windows go build -ldflags "-s -w"
@@ -85,27 +87,27 @@ GOOS=windows go build -ldflags "-s -w"
 
 ### Rust
 
-Rust code (`.rs` files) is compiled via the the `cargo` command. [Cargo](https://doc.rust-lang.org/cargo/guide) can be used to manage your dependencies and build your project. The source code in this repo can be compiled by navigating to the project folder and running the following command.
+Le code Rust (fichiers `.rs`) est compilé via la commande `cargo`. [Cargo](https://doc.rust-lang.org/cargo/guide) peut être utilisé pour gérer vos dépendances et construire votre projet. Le code source de ce dépôt peut être compilé en accédant au dossier du projet et en exécutant la commande suivante.
 
 ```
 cargo build
 ```
 
-If you want to optimize your build for size and strip debug information, you can add the following flags. Refer also to the `[profile.release]` section in each `Cargo.toml` file for some compile-time opsec options.
+Si vous souhaitez optimiser votre build en termes de taille et supprimer les informations de débogage, vous pouvez ajouter les options suivantes. Reportez-vous également à la section [profile.release] de chaque fichier Cargo.toml pour connaître certaines options d'opsec de compilation.
 
 ```
 cargo build --release
 ```
 
-## Dependencies
+## Dépendances
 
 ### C#
 
-Most solutions can be compiled without dependencies. In case dependencies are required, a Visual Studio project is provided that links to the appropriate NuGet packages.
+La plupart des solutions peuvent être compilées sans dépendances. Si des dépendances sont nécessaires, un projet Visual Studio est fourni qui se lie aux packages NuGet appropriés.
 
 ### Nim
 
-Most Nim programs depend on a library called "Winim" to interface with the Windows API. You can install the library with the `Nimble` package manager as follows (after installing Nim):
+La plupart des programmes Nim dépendent d'une bibliothèque appelée « Winim » pour s'interfacer avec l'API Windows. Vous pouvez installer la bibliothèque avec le gestionnaire de packages Nimble comme suit (après avoir installé Nim) :
 
 ```
 nimble install winim
@@ -113,7 +115,7 @@ nimble install winim
 
 ### Golang
 
-Some dependencies are used in the source code of this repo. You can install them as follows (after installing Go):
+Certaines dépendances sont utilisées dans le code source de ce dépôt. Vous pouvez les installer comme suit (après avoir installé Go) :
 
 ```
 go mod tidy
@@ -121,8 +123,8 @@ go mod tidy
 
 ### Rust
 
-Some examples depend on the `windows-sys` crate to call the Windows API. Since we are using Cargo, packages will be automatically managed when you compile a test or release build.
+Certains exemples dépendent de la caisse `windows-sys` pour appeler l'API Windows. Comme nous utilisons Cargo, les paquets seront automatiquement gérés lorsque vous compilerez un test ou une version finale.
 
-## Resources
+## Ressources
 
-The workshop slides reference some resources that you can use to get started. Additional resources, such as relevant blogs or code snippets, are listed in the `README.md` files for each exercise!
+Les diapositives de l'atelier font référence à certaines ressources que vous pouvez utiliser pour commencer. Des ressources supplémentaires, telles que des blogs pertinents ou des extraits de code, sont répertoriées dans les fichiers README.md de chaque exercice !

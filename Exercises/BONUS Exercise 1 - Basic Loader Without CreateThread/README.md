@@ -1,23 +1,23 @@
-# Bonus Exercise 1 - Basic Loader Without CreateThread
+# Bonus Exercice 1 - Loader de base sans CreateThread
 
 ## Description
 
-Modify your loader from [Exercise 1](../Exercise%201%20-%20Basic%20Shellcode%20Loader/) so that it executes shellcode without calling `CreateThread()`.
+Modifiez votre loader de [Exercice 1](../Exercice%201%20-%20Basic%20Shellcode%20Loader/) afin qu'il exécute le shellcode sans appeler `CreateThread()`.
 
-## Tips
+## Astuces
 
-We discussed some loading methods in the slides and [Exercise 1](../BONUS%20Exercise%201%20-%20Basic%20Loader%20Without%20CreateThread/). To get rid of the `CreateThread()` API call we can either use the technique of "casting a pointer", or we can use the native API `NtCreateThreadEx()` to create our thread instead.
+Nous avons discuté de certaines méthodes de chargement dans les diapositives et [Exercice 1](../BONUS%20Exercice%201%20-%20Basic%20Loader%20Without%20CreateThread/). Pour se débarrasser de l'appel à l'API `CreateThread()`, on peut soit utiliser la technique du « casting d'un pointeur », soit utiliser l'API native `NtCreateThreadEx()` pour créer notre thread à la place.
 
-> ℹ **Note:** You may wonder why we used `NtCreateThreadEx()` instead of `NtCreateThread()` for local execution. The answer is that `NtCreateThreadEx()` is much simpler to use: the `NtCreateThread()` function requires us to initialize a full 'Thread Information Block' (TIB) before we can call it, and the `NtCreateThreadEx()` variant does not.
+ℹ **Remarque :** Vous vous demandez peut-être pourquoi nous avons utilisé `NtCreateThreadEx()` au lieu de `NtCreateThread()` pour l'exécution locale. La réponse est que `NtCreateThreadEx()` est beaucoup plus simple à utiliser : la fonction `NtCreateThread()` nous oblige à initialiser un « Thread Information Block » (TIB) complet avant de pouvoir l'appeler, ce qui n'est pas le cas de la variante `NtCreateThreadEx()`.
 
-There are plenty of alternatives to the above. Check out [malapi.io](https://malapi.io/) for an excellent overview of Windows API functions that can be used maliciously. Especially the 'Injection' section is relevant here!
+Il existe de nombreuses alternatives à ce qui précède. Consultez [malapi.io](https://malapi.io/) pour un excellent aperçu des fonctions de l'API Windows qui peuvent être utilisées à des fins malveillantes. La section « Injection » est particulièrement pertinente ici !
 
-> 😎 If you're feeling adventurous, use this opportunity to completely get rid of all high-level API calls and use only the native API. It's harder to write, but using this API will definitely become a vital skill when looking at EDR evasion later on.
+> 😎 Si vous vous sentez l'âme d'un aventurier, profitez de cette occasion pour vous débarrasser complètement de tous les appels d'API de haut niveau et n'utiliser que l'API native. C'est plus difficile à écrire, mais l'utilisation de cette API deviendra certainement une compétence vitale pour contourner l'EDR par la suite.
 
-## References
+## Références
 
-Refer to [Exercise 1](../BONUS%20Exercise%201%20-%20Basic%20Loader%20Without%20CreateThread/).
+Reportez-vous à [Exercice 1](../BONUS%20Exercice%201%20-%20Basic%20Loader%20Without%20CreateThread/).
 
 ## Solution
 
-Example solutions are provided in the [solutions folder](solutions/). Keep in mind that there is no "right" answer, if you made it work that's a valid solution! 
+Des exemples de solutions sont fournis dans le [dossier des solutions](solutions/). Gardez à l'esprit qu'il n'y a pas de « bonne » réponse, si vous avez réussi à le faire fonctionner, c'est une solution valable ! 

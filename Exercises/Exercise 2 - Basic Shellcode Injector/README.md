@@ -1,30 +1,30 @@
-# Exercise 2 - Basic Shellcode Injector
+# Exercice 2 - Injecteur de shellcode de base
 
 ## Description
 
-Create a new project that injects your shellcode in a remote process, such as `explorer.exe`.
+Créez un nouveau projet qui injecte votre shellcode dans un processus distant, tel que `explorer.exe`.
 
-## Tips
+## Astuces
 
-This exercise is actually very similar to [Exercise 1](../Exercise%201%20-%20Basic%20Shellcode%20Loader/) in terms of implementation. The basic approach is comparable to the `VirtualAlloc()` method we saw there, except this time we are using a different API combination: `OpenProcess()` to get a handle on the target process, `VirtualAllocEx()` to allocate executable memory in the remote process, `WriteProcessMemory()` to copy the shellcode into the allocated, and `CreateRemoteThread()` to execute the shellcode as part of the target process.
+Cet exercice est en fait très similaire à l'[Exercice 1](../Exercice%201%20-%20Basic%20Shellcode%20Loader/) en termes de mise en oeuvre. L'approche de base est comparable à la méthode `VirtualAlloc()` que nous avons vue précédemment, sauf que cette fois-ci nous utilisons une combinaison d'API différente : `OpenProcess()` pour obtenir un handle sur le processus cible, `VirtualAllocEx()` pour allouer de la mémoire exécutable dans le processus distant, `WriteProcessMemory()` pour copier le shellcode dans la mémoire allouée, et `CreateRemoteThread()` pour exécuter le shellcode en tant que partie du processus cible.
 
-> ℹ **Note:** There are plenty of alternatives to the above choice of API calls. Check out [malapi.io](https://malapi.io/) for an excellent overview of Windows API functions that can be used maliciously. Especially the 'Injection' section is relevant here!
+> ℹ **Remarque :** Il existe de nombreuses alternatives aux appels d'API ci-dessus. Consultez [malapi.io](https://malapi.io/) pour un excellent aperçu des fonctions de l'API Windows qui peuvent être utilisées à des fins malveillantes. La section « Injection » est particulièrement pertinente ici !
 
-> 😎 If you're feeling adventurous, you can use the native API (Nt-functions from `NTDLL.dll`) counterparts of these functions instead. Alternatively, look at other ways to expose your shellcode to the target process' memory, such as `NtCreateSection()` and `NtMapViewOfSection()` (example [here](https://www.ired.team/offensive-security/code-injection-process-injection/ntcreatesection-+-ntmapviewofsection-code-injection)).
+> 😎 Si vous vous sentez l'âme d'un aventurier, vous pouvez utiliser les équivalents natifs de ces fonctions (fonctions Nt de `NTDLL.dll`). Vous pouvez également chercher d'autres moyens d'exposer votre shellcode à la mémoire du processus cible, tels que `NtCreateSection()` et `NtMapViewOfSection()` (exemple [ici](https://www.ired.team/offensive-security/code-injection-process-injection/ntcreatesection-+-ntmapviewofsection-code-injection)).
 
-### Getting a handle
+### Obtenir un handle
 
-Keep in mind that in order to get a handle, we need to have sufficient privileges over the target process. This generally means that you can only get a handle for a process owned by the current user, and not those owned by other users or managed by the system itself (makes sense right?). However, if you are executing from a privileged context (i.e. running as `SYSTEM` or with the `SeDebugPrivilege` enabled) you can get a handle to any process, including system processes. 
+Gardez à l'esprit que pour obtenir un handle, nous devons disposer de privilèges suffisants sur le processus cible. Cela signifie généralement que vous ne pouvez obtenir un handle que pour un processus appartenant à l'utilisateur actuel, et non pour ceux appartenant à d'autres utilisateurs ou gérés par le système lui-même (c'est logique, non ?). Cependant, si vous exécutez depuis un contexte privilégié (c'est-à-dire en tant que SYSTEM ou avec le privilège SeDebugPrivilege activé), vous pouvez obtenir un handle pour n'importe quel processus, y compris les processus système. 
 
-When designing malware that injects remotely, you need to be conscious about the target process that you choose. Choosing the wrong process may cause your malware to fail because the process is not present, or you have insufficient privileges. Furthermore, injecting from a privileged context into a low-privileged process will drop your privileges.
+Lorsque vous concevez un logiciel malveillant qui s'injecte à distance, vous devez être conscient du processus cible que vous choisissez. Choisir le mauvais processus peut entraîner l'échec de votre logiciel malveillant car le processus n'est pas présent ou vous n'avez pas suffisamment de privilèges. De plus, l'injection à partir d'un contexte privilégié dans un processus à faibles privilèges fera baisser vos privilèges.
 
-> ℹ **Note:** This is why making the target process configurable and basing it on the target environment is a good idea. You may hardcode the name or process ID of `explorer.exe` for now, we will improve that functionality in [bonus exercise 2](../BONUS%20Exercise%202%20-%20Basic%20Injector%20With%20Dynamic%20Target/).
+> ℹ **Remarque :** C'est pourquoi il est judicieux de rendre le processus cible configurable et de le baser sur l'environnement cible. Vous pouvez coder en dur le nom ou l'ID de processus de `explorer.exe` pour l'instant, nous améliorerons cette fonctionnalité dans [exercice bonus 2](../BONUS%20Exercise%202%20-%20Basic%20Injector%20With%20Dynamic%20Target/).
 
-## References
+## Références
 
 ### C#
 
-- [A simple Windows code injection example written in C#](https://andreafortuna.org/2019/03/06/a-simple-windows-code-injection-example-written-in-c/)
+- [Un exemple simple d'injection de code Windows écrit en C#](https://andreafortuna.org/2019/03/06/a-simple-windows-code-injection-example-written-in-c/)
 
 ### Golang
 
@@ -41,4 +41,4 @@ When designing malware that injects remotely, you need to be conscious about the
 
 ## Solution
 
-Example solutions are provided in the [solutions folder](solutions/). Keep in mind that there is no "right" answer, if you made it work that's a valid solution! 
+Des exemples de solutions sont fournis dans le [dossier solutions](solutions/). Gardez à l'esprit qu'il n'y a pas de « bonne » réponse, si vous avez réussi à le faire fonctionner, c'est une solution valable ! 
