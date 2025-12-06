@@ -1,6 +1,6 @@
 # Développement de logiciels malveillants pour les nuls
 
-*À l'ère de l'EDR, les opérateurs de la red team ne peuvent plus se permettre d'utiliser des charges utiles précompilées. Le développement de logiciels malveillants devient donc une compétence essentielle pour tout opérateur. S'initier au maldev peut sembler intimidant, mais c'est en fait très facile. Cet atelier vous montrera tout ce dont vous avez besoin pour commencer !*
+*À l'ère de l'EDR, les opérateurs de la Red Team ne peuvent plus se permettre d'utiliser des charges utiles précompilées. Le développement de logiciels malveillants devient donc une compétence essentielle pour tout opérateur. S'initier au maldev peut sembler intimidant, mais c'est en fait très facile. Cet atelier vous montrera tout ce dont vous avez besoin pour commencer !*
 
 Ce dépôt contient les diapositives et les exercices qui accompagnent l'atelier « MalDev for Dummies » qui a été/sera animé à Hack in Paris 2022 et à X33fcon 2023. Bien que les diapositives aient été conçues pour être présentées « en personne », le matériel et les exercices resteront disponibles ici pour être complétés à votre rythme - le processus d'apprentissage ne doit jamais être précipité ! Les questions et les demandes d'ajout à ce dépôt sont les bienvenues.
 
@@ -8,13 +8,14 @@ Ce dépôt contient les diapositives et les exercices qui accompagnent l'atelier
 
 ## Description de l'atelier
 
-Les outils antivirus (AV) et de détection et réponse d'entreprise (EDR) gagnant en maturité de minute en minute, l'équipe rouge est obligée de garder une longueur d'avance. L'époque de l'exécution-assemblage et du dépôt de charges utiles non modifiées sur le disque est révolue. Si vous voulez que vos engagements durent plus d'une semaine, vous devrez intensifier votre création de charges utiles et votre développement de logiciels malveillants. Il peut cependant être intimidant de se lancer dans ce domaine et il n'est pas toujours facile de trouver les bonnes ressources.
+Les outils antivirus (AV) et de détection et réponse d'entreprise (EDR) gagnant en maturité de minute en minute, la Red Team est obligée de garder une longueur d'avance. L'époque de l'exécution-assemblage et du dépôt de charges utiles non modifiées sur le disque est révolue. Si vous voulez que vos engagements durent plus d'une semaine, vous devrez intensifier votre création de charges utiles et votre développement de logiciels malveillants. Il peut cependant être intimidant de se lancer dans ce domaine et il n'est pas toujours facile de trouver les bonnes ressources.
 
 Cet atelier s'adresse aux débutants dans le domaine et vous guidera dans vos premiers pas en tant que développeur de logiciels malveillants. Il s'adresse principalement aux praticiens offensifs, mais les praticiens défensifs sont également les bienvenus pour y assister et élargir leurs compétences. 
 
-Pendant l'atelier, nous aborderons quelques notions théoriques, après quoi un environnement de laboratoire sera activé. Vous pourrez effectuer différents exercices en fonction de vos compétences actuelles et de votre niveau de maîtrise du sujet. Cependant, l'objectif de l'atelier est d'apprendre, et explicitement *non* de terminer tous les exercices. Vous êtes libre de choisir votre langage de programmation préféré pour le développement de logiciels malveillants, mais l'assistance pendant l'atelier est principalement fournie pour les langages de programmation C# et Nim.
+Pendant l'atelier, nous aborderons quelques notions théoriques, après quoi un environnement de laboratoire sera activé. Vous pourrez effectuer différents exercices en fonction de vos compétences actuelles et de votre niveau de maîtrise du sujet. Cependant, l'objectif de l'atelier est d'apprendre, et explicitement **non** de terminer tous les exercices. Vous êtes libre de choisir votre langage de programmation préféré pour le développement de logiciels malveillants, mais l'assistance pendant l'atelier est principalement fournie pour les langages de programmation C# et Nim.
 
 Au cours de l'atelier, nous aborderons les principaux sujets nécessaires pour commencer à créer votre propre malware. Cela inclut (mais n'est pas limité à) :
+
 - L'API Windows
 - Les types de fichiers et les méthodes d'exécution
 - L'exécution et l'injection de shellcode
